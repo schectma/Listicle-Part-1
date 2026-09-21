@@ -2,7 +2,7 @@
 
 Submitted by: **Alex Schectman**
 
-About this web app: **Rug Pull Academy is a satirical listicle of the ten moves the crypto
+About this web app: **Rug Pull Academy is a listicle of the ten moves the crypto
 scam playbook runs on, written so the patterns are recognizable rather than repeatable. Each
 lesson names a tactic, mocks it, and pairs it with the red flag a reader should actually watch
 for. Browse the lessons on the front page, click into any one of them for the full write-up,
@@ -41,19 +41,15 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented required features:
 
-<img src='walkthrough.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+https://imgur.com/a/S4rid9l
 
-GIF created with [your tool here]
+GIF created with [Cockos LICEcap](https://www.cockos.com/licecap/)
 
 ## Notes
 
 The front page hero states plainly that the content is satire. Each lesson is written from a
-critical stance and carries a `redFlag` field describing what a reader should watch out for, so
-the app reads as a field guide for spotting scams rather than a manual for running one.
-
-Every lesson carries the same nine attributes (`id`, `slug`, `title`, `category`, `text`,
-`redFlag`, `image`, `submittedBy`, `submittedOn`), which should map cleanly onto a single table
-when the project is connected to a database in Unit 2.
+critical stance and carries a `redFlag` field describing what a reader should watch out for.
+This app is meant to read as a field guide for spotting scams rather than a manual for running one.
 
 ## Running the app
 
@@ -69,7 +65,7 @@ server alone serves the whole app on `:3001`.
 
 ## License
 
-Copyright [yyyy] [name of copyright owner]
+Copyright 2026 Alex Schectman
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
