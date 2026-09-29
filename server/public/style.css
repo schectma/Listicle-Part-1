@@ -35,6 +35,23 @@ header nav .brand {
     text-align: left;
 }
 
+/* Search CSS */
+
+.grift-search {
+    margin-bottom: 1rem;
+}
+
+.grift-search input {
+    margin-bottom: 0;
+}
+
+.result-count {
+    min-height: 1.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
+    color: var(--pico-muted-color);
+}
+
 /* Home page CSS */
 
 .grift-grid {
