@@ -1,47 +1,47 @@
-# WEB103 Project 1 - *Rug Pull Academy*
+# WEB103 Project 2 - *Rug Pull Academy*
 
 Submitted by: **Alex Schectman**
 
 About this web app: **Rug Pull Academy is a listicle of the ten moves the crypto
 scam playbook runs on, written so the patterns are recognizable rather than repeatable. Each
 lesson names a tactic, mocks it, and pairs it with the red flag a reader should actually watch
-for. Browse the lessons on the front page, click into any one of them for the full write-up,
-and get a 404 page for anything that does not exist.**
+for. Browse the lessons on the front page, search them by attribute, click into any one of them
+for the full write-up, and get a 404 page for anything that does not exist. Every
+lesson is now served out of a Render PostgreSQL database rather than a hardcoded array.**
 
-Time spent: **3** hours
+Time spent: **10** hours
 
 ## Required Features
 
 The following **required** functionality is completed:
 
 - [x] **The web app uses only HTML, CSS, and JavaScript without a frontend framework**
-- [x] **Front page of web app is functional and appropriately styled**
-  - [x] The web app displays a title
-  - [x] Website displays at least five unique list items
-  - [x] Each list item includes at least three displayed attributes
-- [x] **Each list item has a corresponding page**
-  - [x] The user can click on each item in the list to see a detailed view of it, including all database fields
-  - [x] The web app serves an appropriate 404 page when no matching route is defined
-- [x] **The webpage is styled with Picocss**
+- [x] **Data is supplied to the app using a Render PostgreSQL database**
+  - [x] The web app is connected to a Render PostgreSQL database
+  - [x] The database contains an appropriately structured table for the list items
 
-The following **optional** features are implemented:
+The following **stretch** features are implemented:
 
-- [x] List items are displayed in a unique format
-  - Lessons render as a responsive card grid rather than a flat list.
+- [x] Users can search for items with a specific attribute
+  - A search box matches against the title, body, red flag, category, and contributor. The
+    filter is applied by Postgres in the `WHERE` clause, so the server only ever returns the
+    rows that matched -- the browser is not filtering a full list.
 
 The following **additional** features are implemented:
 
-- [x] Detail pages use readable slug URLs (`/grifts/blame-the-hack`) rather than numeric IDs.
-- [x] The Express server returns a real `404` status code alongside the 404 page, not just a
-      client-side redirect.
-- [x] Unknown item slugs (e.g. `/grifts/not-a-real-slug`) also resolve to the 404 page.
-- [x] Pico's automatic light/dark mode is respected throughout.
+- [x] The detail page requests only its own row (`GET /grifts/:slug/data`) instead of pulling
+      down all ten lessons and finding one in the browser.
+- [x] Unknown slugs are checked against the database by the server, so `/grifts/not-a-real-slug`
+      answers with a real `404` status and the 404 page instead of a client-side redirect after
+      the page has already rendered.
+- [x] `npm start` reseeds the database before booting the server, so a fresh clone is one
+      command away from a working app.
+- [x] Detail pages keep their readable slug URLs (`/grifts/blame-the-hack`).
+- [x] Pico's automatic light/dark mode is respected throughout, including the new search bar.
 
 ## Video Walkthrough
 
-Here's a walkthrough of implemented required features:
-
-https://imgur.com/a/S4rid9l
+Here's a walkthrough of implemented required features: https://imgur.com/a/7U6FFfx
 
 GIF created with [Cockos LICEcap](https://www.cockos.com/licecap/)
 
@@ -53,15 +53,26 @@ This app is meant to read as a field guide for spotting scams rather than a manu
 
 ## Running the app
 
+The server reads its Postgres credentials from `server/.env`, which is git-ignored:
+
+```
+PGDATABASE="..."
+PGHOST="....oregon-postgres.render.com"
+PGPASSWORD="..."
+PGPORT=5432
+PGUSER="..."
+```
+
 The client and server run separately, so this needs two terminals:
 
 ```
-cd server && npm install && npm start     # API + static host on :3001
+cd server && npm install && npm start     # reseeds the db, then serves the API on :3001
 cd client && npm install && npm run dev   # Vite dev server on :5173
 ```
 
 Open the Vite URL. `npm run build` in `client` outputs to `server/public`, after which the
-server alone serves the whole app on `:3001`.
+server alone serves the whole app on `:3001`. Run `npm run reset` in `server` to reseed the
+database without starting the server.
 
 ## License
 
